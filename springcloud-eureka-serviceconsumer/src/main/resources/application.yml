@@ -1,0 +1,28 @@
+server:
+  port: 8083 # 服务提供方
+
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8081/eureka
+  instance:
+    hostname: localhost
+
+#当前服务名称
+spring:
+  application:
+    name: feign-client
+  mvc:
+    view:
+      prefix: /pages/
+      suffix: .html
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000 # 连接超时时间
+        readTimeout: 5000   # 读超时时间
+        loggerLevel: full # 日志级别

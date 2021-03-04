@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <form name="testForm" action="/testFeign/submit">
+        <textarea name="remark"></textarea>
+        <input id="submitButton" type="button" onclick="submitForm()" value="submit"/>
+    </form>
+</body>
+
+<script>
+    $(function () {
+
+    })
+   function submitForm() {
+       var remark = $("textarea[name='remark']").val();
+       var config = {};
+       var param = new FormData();
+       console.log("remark " + remark);
+       param.append("remark",remark);
+       axios.post('/ajaxController/submit',param,config).then(function (data) {
+           console.log("call back value + " + data.data);
+           $("textarea[name='remark']").val(data.data);
+       });
+   }
+</script>
+
+</html>
